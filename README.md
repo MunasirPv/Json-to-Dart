@@ -1,71 +1,77 @@
-# json-to-dart README
+# JSON to Dart
 
-This is the README for your extension "json-to-dart". After writing up a brief description, we recommend including the following sections.
+Speed up your Flutter development by instantly generating Dart data models from JSON objects.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Instant Conversion**: Convert any selected JSON text into a Dart class.
+- **Auto-Generation**: Automatically generates:
+  - Class properties with types.
+  - Constructor with `required` named parameters.
+  - `fromJson` factory method for parsing.
+  - `toJson` method for serialization.
+- **Type Support**: Handles Strings, Numbers (int/double), Booleans, Attributes.
 
-For example if there is an image subfolder under your extension project workspace:
+## How to Use
 
-\!\[feature X\]\(images/feature-x.png\)
+1.  Open a file in VS Code.
+2.  Paste your JSON object or select an existing JSON block.
+    ```json
+    {
+      "name": "Flutter",
+      "version": 3.0,
+      "isCool": true
+    }
+    ```
+3.  Highlight/Select the JSON text.
+4.  Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+5.  Run the command: **Convert Selection to Dart Model**.
+6.  Enter the desired **Class Name** when prompted (e.g., `Framework`).
+7.  The selected JSON will be replaced by the generated Dart code:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+    ```dart
+    class Framework {
+      final String name;
+      final double version;
+      final bool isCool;
+    
+      Framework({
+        required this.name,
+        required this.version,
+        required this.isCool,
+      });
+    
+      factory Framework.fromJson(Map<String, dynamic> json) {
+        return Framework(
+          name: json['name'],
+          version: json['version'],
+          isCool: json['isCool'],
+        );
+      }
+    
+      Map<String, dynamic> toJson() {
+        return {
+          'name': name,
+          'version': version,
+          'isCool': isCool,
+        };
+      }
+    }
+    ```
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- VS Code version 1.107.0 or higher.
+- No additional dependencies required.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- **Arrays**: Currently, all arrays are typed as `List<dynamic>`. Complex nested lists may require manual type adjustment.
+- **Nested Objects**: Nested objects are currently typed as `Map<String, dynamic>`. You may want to generate separate classes for nested objects manually.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Initial release of JSON to Dart.
+- Basic JSON parsing and Dart class generation.

@@ -3,7 +3,7 @@
   "displayName": "Dartify JSON",
   "description": "Speed up Flutter development by generating Dart models from JSON.",
   "publisher": "MunasirPv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.108.0"
   },
@@ -14,7 +14,7 @@
   "categories": [
     "Other"
   ],
-  "icon": "logo.ico",
+  "icon": "logo.png",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
